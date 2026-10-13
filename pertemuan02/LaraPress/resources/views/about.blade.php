@@ -1,12 +1,17 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('about') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="card shadow-sm border-0">
-    <div class="card-body p-5">
-        <h2 class="fw-bold text-dark mb-3">Tentang Kami</h2>
-        <p class="text-secondary fs-5">LaraPress adalah platform website inovatif yang dikembangkan untuk mempermudah pengelolaan konten dan informasi secara cepat dan aman.</p>
-        <hr class="my-4">
-        <p class="text-muted">Kami berkomitmen untuk memberikan pengalaman web terbaik menggunakan teknologi terkini.</p>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("Di dalam About") }}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-@endsection
+</x-app-layout>

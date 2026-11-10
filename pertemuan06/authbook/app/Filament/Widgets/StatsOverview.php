@@ -9,29 +9,24 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class StatsOverview extends BaseWidget
 {
-    protected static ?int $sort = 1; // Menampilkan widget ini paling atas
-
     protected function getStats(): array
     {
-        $totalAuthors = Author::count();
-        $totalBooks = Book::count();
-
         return [
-            Stat::make('Total Penulis', $totalAuthors)
-                ->description('Penulis terdaftar di katalog')
-                ->descriptionIcon('heroicon-m-user-group')
-                ->chart([4, 7, 5, 8, 10, 12, $totalAuthors])
-                ->color('info'),
-
-            Stat::make('Koleksi Buku', $totalBooks)
-                ->description('Total inventaris buku')
+            Stat::make('Total Books', Book::count())
+                ->description('Total koleksi buku')
                 ->descriptionIcon('heroicon-m-book-open')
-                ->chart([2, 5, 9, 12, 14, 18, $totalBooks])
+                ->color('primary'),
+            Stat::make('Total Authors', Author::count())
+                ->description('Total penulis terdaftar')
+                ->descriptionIcon('heroicon-m-user-group')
                 ->color('success'),
-
-            Stat::make('Status Sistem', 'Aktif')
-                ->description('Database SQLite Terhubung')
-                ->descriptionIcon('heroicon-m-circle-stack')
+            Stat::make('Available Books', Book::where('status', 'available')->count())
+                ->description('Buku siap dipinjam')
+                ->descriptionIcon('heroicon-m-check-circle')
+                ->color('success'),
+            Stat::make('Borrowed Books', Book::where('status', 'borrowed')->count())
+                ->description('Buku sedang dipinjam')
+                ->descriptionIcon('heroicon-m-clock')
                 ->color('warning'),
         ];
     }
